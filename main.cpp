@@ -5,7 +5,7 @@
 #define BYTE_SIZE 4
 #define ERROR_CODE -1
 
-int GetNumFromFile(char* fileName) {
+uint32_t GetNumFromFile(char* fileName) {
     FILE *fp;
     uint8_t buf[MAX_READ_SIZE];
 
@@ -22,7 +22,6 @@ int GetNumFromFile(char* fileName) {
 
 
     uint32_t value = (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
-	printf("%u\n", value);
     return value;
 }
 
@@ -31,7 +30,12 @@ int GetNumFromFile(char* fileName) {
 int main(int argc, char *argv[]) {
     uint32_t result = 0;
 	for (int i = 1; i < argc; i++) {
-        result += GetNumFromFile(argv[i]);   
+        uint32_t tmp = GetNumFromFile(argv[i]);   
+		if (tmp == ERROR_CODE){
+			printf("Wrong\n");
+			return 0;
+		}
+		result += tmp;
     }
 	printf("%u",result);
 
