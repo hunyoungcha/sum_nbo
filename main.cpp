@@ -20,19 +20,20 @@ int GetNumFromFile(char* fileName) {
         return ERROR_CODE;
     }
 
-    int value = (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
-	printf("%d\n", value);
+
+    uint32_t value = (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
+	printf("%u\n", value);
     return value;
 }
 
 
 
 int main(int argc, char *argv[]) {
-    int result = 0;
+    uint32_t result = 0;
 	for (int i = 1; i < argc; i++) {
         result += GetNumFromFile(argv[i]);   
     }
-	printf("%d",result);
+	printf("%u",result);
 
     return 0;
 }

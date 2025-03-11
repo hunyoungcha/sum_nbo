@@ -11,3 +11,6 @@ clean:
 	rm -f sum-nbo
 	rm -f *.o
 
+cleanObj:
+	rm -f *.o
+
